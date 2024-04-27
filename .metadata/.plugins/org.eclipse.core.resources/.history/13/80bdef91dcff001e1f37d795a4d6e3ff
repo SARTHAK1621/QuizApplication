@@ -1,0 +1,5 @@
+package com.sarthak.QuizService.controller;
+
+public class QuizController {
+
+}

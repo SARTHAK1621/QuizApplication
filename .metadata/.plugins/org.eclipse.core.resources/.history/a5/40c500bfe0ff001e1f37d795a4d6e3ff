@@ -1,0 +1,5 @@
+package com.sarthak.QuizService.service;
+
+public class QuizService {
+
+}

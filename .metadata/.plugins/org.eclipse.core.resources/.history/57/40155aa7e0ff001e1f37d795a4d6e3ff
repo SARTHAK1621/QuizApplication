@@ -1,0 +1,5 @@
+package com.sarthak.QuizService.DAO;
+
+public class QuizDAO {
+
+}

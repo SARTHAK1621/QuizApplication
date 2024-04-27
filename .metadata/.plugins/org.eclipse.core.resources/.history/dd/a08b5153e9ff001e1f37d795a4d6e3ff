@@ -1,0 +1,5 @@
+package com.sarthak.QuizService.model;
+
+public class Quiz {
+
+}

@@ -1,0 +1,6 @@
+package com.sarthak.QuizService.feign;
+
+//@FeignClient
+public interface QuizInterface {
+
+}

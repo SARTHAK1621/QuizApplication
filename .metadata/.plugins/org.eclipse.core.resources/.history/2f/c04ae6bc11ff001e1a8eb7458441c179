@@ -1,0 +1,5 @@
+package com.sarthak.QuestionService.model;
+
+public class Question {
+
+}

@@ -1,0 +1,8 @@
+package com.sarthak.QuizService.controller;
+
+public class QuizDTO {
+	String category;
+	String title;
+	int numOfQuestion;
+
+}

@@ -1,0 +1,84 @@
+package com.sarthak.QuizService.service;
+
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Optional;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
+import org.springframework.stereotype.Service;
+
+import com.sarthak.QuizService.DAO.QuizDAO;
+import com.sarthak.QuizService.feign.QuizInterface;
+import com.sarthak.QuizService.model.QuestionWrapper;
+import com.sarthak.QuizService.model.QuizServ;
+import com.sarthak.QuizService.model.Response;
+
+@Service
+public class QuizService {
+	
+	@Autowired
+	QuizDAO quizDao;
+	@Autowired
+	QuizInterface quizint;
+	
+//	@Autowired
+//	QuestionDao questionDao;
+
+	public ResponseEntity<String> createQuiz(String category, int noOfQuestions, String title) {
+		List<Integer> questions=quizint.getQuestionsForQuiz(category, noOfQuestions).getBody();
+		QuizServ quiz=new QuizServ();
+		List<QuizServ> all=quizDao.findAll();
+		quiz.setId(all.size()+1);
+		quiz.setTitle(title);
+		quiz.setQuestions(questions);
+		System.out.print(quiz.getId());
+		System.out.print(quiz.getTitle());
+		System.out.print(quiz.getQuestions());
+		
+//		quizDao.save(quiz);
+//		List<Quiz> all=quizDao.findAll();
+//		quiz.setId(all.size()+1);
+//		quiz.setTitle(title);
+//		quiz.setQuestions(questions);
+//		quizDao.save(quiz);
+//		System.out.println(quiz.getId());
+//		System.out.println(quiz.getTitle());
+//		System.out.println(quiz.getQuestions());
+		return new ResponseEntity<>("Success",HttpStatus.CREATED);
+	}
+
+	public ResponseEntity<List<QuestionWrapper>> getQuizQuestions(Integer id) {
+//		Optional<Quiz> quiz=quizDao.findById(id);
+//		List<Question> questions=quiz.get().getQuestions();
+		List<QuestionWrapper> questionForUser=new ArrayList<>();
+//		for(int i=0;i<questions.size();i++)
+//		{
+//			QuestionWrapper q=new QuestionWrapper(questions.get(i).getId(),questions.get(i).getQuestionTitle(),questions.get(i).getOption1(),questions.get(i).getOption2(),questions.get(i).getOption3(),questions.get(i).getOption4());
+//			questionForUser.add(q);
+//		}
+		return new ResponseEntity<>(questionForUser,HttpStatus.OK);
+	}
+
+	public ResponseEntity<Integer> calculateResult(Integer id, List<Response> responses) {
+//		Quiz quiz=quizDao.findById(id).get();
+//		List<Question> questions=quiz.getQuestions();
+		int result=0;
+//		int i=0;
+//		for(Response response:responses)
+//		{
+//			if(response.getResponse().equals(questions.get(i).getAnswer()))
+//			{
+//				result++;
+//			}
+//			System.out.println(questions.get(i).getAnswer()+" "+response.getResponse());
+//			i++;
+//		}
+		return new ResponseEntity<>(result,HttpStatus.OK);
+	}
+	
+	
+
+}
+
